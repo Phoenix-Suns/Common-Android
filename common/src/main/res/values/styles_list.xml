@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Nguồn: https://www.google.com/design/spec/components/lists.html-->
+
+    <!--list item, title lớn-->
+    <!--padding top, bottom mỗi dòng-->
+    <dimen name="common_listItem_padding">16dp</dimen>
+    <!--ảnh đầu mỗi dòng-->
+    <dimen name="common_listItem_icon_size">40dp</dimen><!--Không sử dụng-->
+    <dimen name="common_listItem_icon_width">72dp</dimen>
+    <dimen name="common_listItem_icon_paddingLeft">16dp</dimen>
+    <dimen name="common_listItem_icon_paddingRight">16dp</dimen>
+    <!--ảnh thông tin cuối-->
+    <dimen name="common_listItem_subIcon_size">24dp</dimen><!--Không sử dụng-->
+    <dimen name="common_listItem_subIcon_width">56dp</dimen>
+    <dimen name="common_listItem_subIcon_paddingLeft">16dp</dimen>
+    <dimen name="common_listItem_subIcon_paddingRight">16dp</dimen>
+
+    <!-- ================ Big List ============== -->
+    <!--list content-->
+    <style name="Common.ListItemContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/common_listItem_padding</item>
+        <item name="android:paddingBottom">@dimen/common_listItem_padding</item>
+    </style>
+
+    <!--list icon-->
+    <style name="Common.ListItemIcon">
+        <item name="android:layout_width">@dimen/common_listItem_icon_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/common_listItem_icon_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/common_listItem_icon_paddingRight</item>
+    </style>
+
+    <!--list Title-->
+    <style name="Common.ListItemTitle">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <!--list sub icon (right icon)-->
+    <style name="Common.ListItemSubIcon">
+        <item name="android:layout_width">@dimen/common_listItem_subIcon_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/common_listItem_subIcon_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/common_listItem_subIcon_paddingRight</item>
+    </style>
+
+
+    <!-- =================== SMALL LIST STYLE ================== -->
+    <!--ảnh đầu mỗi dòng-->
+    <dimen name="common_listSmallItem_icon_size">24dp</dimen><!--Không sử dụng-->
+    <dimen name="common_listSmallItem_icon_paddingLeft">16dp</dimen>
+    <dimen name="common_listSmallItem_icon_paddingRight">32dp</dimen>
+    <!--ảnh thông tin cuối-->
+    <dimen name="common_listSmallItem_subIcon_size">16dp</dimen><!--Không sử dụng-->
+    <dimen name="common_listSmallItem_subIcon_width">40dp</dimen>
+    <dimen name="common_listSmallItem_subIcon_paddingLeft">8dp</dimen>
+    <dimen name="common_listSmallItem_subIcon_paddingRight">16dp</dimen>
+
+    <!--list content-->
+    <style name="Common.ListSmallItemContent" parent="Common.ListItemContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/common_listItem_padding</item>
+        <item name="android:paddingBottom">@dimen/common_listItem_padding</item>
+    </style>
+
+    <!--list icon-->
+    <style name="Common.ListSmallItemIcon">
+        <item name="android:layout_width">@dimen/common_listItem_icon_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/common_listSmallItem_icon_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/common_listSmallItem_icon_paddingRight</item>
+    </style>
+
+    <!--list titmessagetext)-->
+    <style name="Common.ListSmallItemTitle">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <!--list sub icon (right icon)-->
+    <style name="Common.ListSmallItemSubIcon">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/common_listSmallItem_subIcon_width</item>
+        <item name="android:paddingLeft">@dimen/common_listSmallItem_subIcon_paddingLeft</item>
+        <item name="android:paddingRight">@dimen/common_listSmallItem_subIcon_paddingRight</item>
+    </style>
+
+
+
+</resources>
