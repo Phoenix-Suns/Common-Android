@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * Lớp kiểm tra View hợp lệ
  * Tự hiện lỗi
  */
-public class TextValidateUtil {
+public class ValidateUtil {
 
     /* Các lỗi cơ bản:
     requited - không rỗng
@@ -23,7 +23,13 @@ public class TextValidateUtil {
      */
 
     public static final String REGEX_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    public static final String REGEX_PHONE = "\\d{3}-\\d{7}";
+    public static final String[] REGEX_PHONE = {
+            "\\d{10}", "\\d{11}",
+            "\\d{3}-\\d{7}",
+            "\\d{3}[-.\\s]\\d{3}[-.\\s]\\d{4}",
+            "\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}",
+            "\\(\\d{3}\\)-\\d{3}-\\d{4}"
+    };
     // ^$|pattern = có thể null
     public static final String REGEX_POSITIVE_NUMBER = "^$|[0-9]{1,10}$";
 
@@ -47,7 +53,10 @@ public class TextValidateUtil {
     }
 
     public static boolean isPhoneValid(String phone) {
-        return Pattern.matches(REGEX_PHONE, phone);
+        for (String regex:REGEX_PHONE) {
+            if (Pattern.matches(regex, phone)) return true;
+        }
+        return false;
     }
 
 

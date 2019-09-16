@@ -15,5 +15,4 @@
     <!--enable false-->
     <item android:state_enabled="false" android:drawable="@color/common_controlBackground_highLight" />
 
-
 </selector>

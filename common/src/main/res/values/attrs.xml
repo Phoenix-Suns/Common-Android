@@ -3,4 +3,20 @@
     <declare-styleable name="CollapsingImageBehavior">
         <attr name="collapsedTarget" format="integer"></attr>
     </declare-styleable>
+
+    <!--Thuộc tính Custom Button-->
+    <declare-styleable name="attrsCustomButton">
+        <attr name="title" format="string" />
+        <attr name="textPosition" format="enum">
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RotateLoadingView">
+        <attr name="loading_width" format="dimension" />
+        <attr name="loading_color" format="color" />
+        <attr name="shadow_position" format="integer" />
+        <attr name="loading_speed" format="integer" />
+    </declare-styleable>
 </resources>

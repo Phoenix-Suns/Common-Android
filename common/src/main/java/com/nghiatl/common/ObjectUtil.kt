@@ -6,12 +6,12 @@ class ObjectUtil {
     companion object {
         /// <summary> Gán dữ liệu đến dữ liệu </summary>
         fun copyProperties(from: Any, to: Any) {
-            val packageName = this.javaClass.name.substring(0, this.javaClass.name.lastIndexOf("."))
+            val packageName = this::class.java.name.substring(0, this::class.java.name.lastIndexOf("."))
 
-            val fields = from.javaClass.declaredFields
+            val fields = from::class.java.declaredFields
             for (field in fields) {
                 try {
-                    val fieldFrom = from.javaClass.getDeclaredField(field.name)
+                    val fieldFrom = from::class.java.getDeclaredField(field.name)
                     fieldFrom.isAccessible = true //access private field
                     val value = fieldFrom.get(from)
 
@@ -20,12 +20,11 @@ class ObjectUtil {
 
 
                     // check type
-                    if (fieldFrom == null || value == null) continue //bỏ qua null
+                    if (value == null) continue //bỏ qua null
 
                     if (fieldFrom.type.name.contains(packageName)
                             || !fieldFrom.type.name.contains("java"))
                         continue
-
 
                     fieldTo.set(to, value)
 

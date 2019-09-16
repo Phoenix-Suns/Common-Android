@@ -23,7 +23,7 @@ public class ActivityUtil {
      * @param currentActivity
      * @param toActivity
      */
-    public static void delayFinishActivity(long delaySecond, final Activity currentActivity, final Class<?> toActivity) {
+    public static void delayFinishActivity(float delaySecond, final Activity currentActivity, final Class<?> toActivity) {
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -32,7 +32,7 @@ public class ActivityUtil {
                 currentActivity.startActivity(mainIntent);
                 currentActivity.finish();
             }
-        }, delaySecond * 1000);
+        }, (long)(delaySecond * 1000));
     }
 
     /**

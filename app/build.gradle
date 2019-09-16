@@ -4,28 +4,46 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.2"
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
     defaultConfig {
         applicationId "com.example.democommon"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", debug_url)
+            buildConfigField("String", "API_KEY", "\"\"")
+            buildConfigField("String", "SHARE_URL_DOMAIN", share_url_domain)
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            buildConfigField("String", "BASE_URL", release_url)
+            buildConfigField("String", "API_KEY", "\"\"")
+            buildConfigField("String", "SHARE_URL_DOMAIN", share_url_domain)
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -33,4 +51,63 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':common')
+
+    /* Android Support Library */
+    implementation "androidx.appcompat:appcompat:$rootProject.support_library_version"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recycler_view_version"
+    implementation "com.google.android.material:material:$rootProject.material_version"
+    implementation "androidx.cardview:cardview:$rootProject.card_view_version"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraint_layout_version"
+
+    // DAGGER
+    // implementation "com.google.dagger:dagger:$rootProject.dagger_version"
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines_version"
+
+    // Room Components
+    implementation "androidx.room:room-runtime:$rootProject.room_version"
+    kapt "androidx.room:room-compiler:$rootProject.room_version"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.room_version"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycle_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2_adapter_rxjava_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_logging_version"
+
+    // RX
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
+
+    // logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$rootProject.gson_version"
+
+    //Facebook
+    api "com.facebook.android:facebook-share:$rootProject.facebook_version"
+    implementation "com.facebook.android:facebook-android-sdk:$rootProject.facebook_version"
+
+    //Google sign in
+    implementation "com.google.android.gms:play-services-auth:$rootProject.play_service_version"
+    implementation "com.google.firebase:firebase-core:$rootProject.firebase_core_version"
+//    implementation "com.google.firebase:firebase-auth:19.0.0"
+//    implementation "com.crashlytics.sdk.android:crashlytics:2.10.1"
+//    implementation "com.google.firebase:firebase-messaging:20.0.0"
+
 }

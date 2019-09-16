@@ -26,7 +26,6 @@ public class TextFileUtil {
      */
     public static boolean writeToFile(String filePath, String data) {
         try {
-
             if (!FileUtil.createNewFile(filePath)) return false;
 
             OutputStream outputStream = new FileOutputStream(filePath);
@@ -106,7 +105,7 @@ public class TextFileUtil {
 
     /**
      * Thêm 1 "log line" theo thời gian hiện tại
-     * Code Sample:
+     * Sample:
      * String message = editText.getText()+"";
      * String filePath = Environment.getExternalStorageDirectory() + "/nghia.txt";
      * TextFileUtil.appendLogLine(filePath, message);

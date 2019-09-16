@@ -1,4 +1,4 @@
-package com.windyroad.nghia.common.view
+package com.nghiatl.common.view
 
 import android.content.Context
 import android.util.AttributeSet

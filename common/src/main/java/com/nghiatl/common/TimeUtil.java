@@ -99,6 +99,14 @@ public class TimeUtil {
         return String.format("%02d:%02d:%02d", hour, minute, seconds);
     }
 
+    public static final String millisecondsToTimer(int milliseconds) {
+        int hours = milliseconds /  (1000*60*60);
+        int minutes = (milliseconds % (1000*60*60)) / (1000*60);
+        int seconds = (milliseconds % (1000*60*60)) % (1000*60) / 1000;
+        String secondsString = seconds < 10 ? "0" + String.valueOf(seconds) : String.valueOf(seconds);
+        return hours > 0 ? hours + ":" + minutes + ":" + secondsString : minutes + ":" + secondsString;
+    }
+
     public static long minusTime(Calendar fromTime, Calendar toTime) {
         return Math.abs(fromTime.getTimeInMillis() - toTime.getTimeInMillis());
     }

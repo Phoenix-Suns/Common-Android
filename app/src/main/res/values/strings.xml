@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DemoCommon</string>
+    <string name="error_not_format_email">hãy nhập email</string>
+    <string name="error_not_empty">Không để trống</string>
+    <string name="facebook_app_id" translatable="false">662544150908042</string>
+<!--    web-->
+    <string name="google_sign_request_id" translatable="false">592056259575-i83hhdc13h199fi8f7q1phjtnhocds65.apps.googleusercontent.com</string>
+    <!--<string name="google_sign_request_id" translatable="false">592056259575-mp40latu5l3h7t5te3nfhpgim2k2gmku.apps.googleusercontent.com</string>-->
 </resources>
