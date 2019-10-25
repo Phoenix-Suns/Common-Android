@@ -6,7 +6,7 @@ import android.widget.Toast
 import com.example.democommon.R
 import com.example.democommon.extension.text
 import com.example.democommon.extension.validate
-import com.example.democommon.models.LoginRespond
+import com.example.democommon.models.response.LoginRespond
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException

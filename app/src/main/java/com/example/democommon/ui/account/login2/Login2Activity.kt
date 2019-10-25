@@ -12,7 +12,7 @@ import com.example.democommon.R
 import com.example.democommon.app.AppViewModelFactory
 import com.example.democommon.extension.text
 import com.example.democommon.extension.validate
-import com.example.democommon.models.LoginRespond
+import com.example.democommon.models.response.LoginRespond
 import com.nghiatl.common.dialog.LoadingDialog
 import com.nghiatl.common.extension.isEmailValid
 import dagger.android.AndroidInjection

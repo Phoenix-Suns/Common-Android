@@ -13,6 +13,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        ActivityUtil.delayFinishActivity(0.3F, this, LoginActivity::class.java)
+        ActivityUtil.delayFinishActivity(0.3F, this, Login2Activity::class.java)
     }
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.example.github.vo.Resource
 import com.example.democommon.api.services.AccountService
-import com.example.democommon.models.LoginRespond
+import com.example.democommon.models.response.LoginRespond
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

@@ -1,7 +1,7 @@
 package com.example.democommon.api.services
 
-import com.example.democommon.models.BaseRespond
-import com.example.democommon.models.LoginRespond
+import com.example.democommon.models.response.BaseRespond
+import com.example.democommon.models.response.LoginRespond
 import com.example.democommon.api.UrlHelper
 import io.reactivex.Observable
 import retrofit2.Call

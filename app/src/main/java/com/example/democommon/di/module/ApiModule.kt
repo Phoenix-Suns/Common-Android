@@ -6,6 +6,7 @@ import com.example.democommon.api.services.AccountService
 import com.example.democommon.app.AppPrefs
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.nghiatl.common.extension.toPrettyJSONString
 import com.nghiatl.common.network.NetworkUtil
 import dagger.Module
 import dagger.Provides
@@ -54,7 +55,7 @@ class ApiModule {
         // Write Log
         if (BuildConfig.DEBUG) {
             val logging = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
-                Timber.tag("OkHttp").i(message)
+                Timber.tag("OkHttp").i(message.toPrettyJSONString())
             })
             logging.level = HttpLoggingInterceptor.Level.BODY
             httpClient.addInterceptor(logging)
