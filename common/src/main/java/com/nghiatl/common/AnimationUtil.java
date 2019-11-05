@@ -27,7 +27,7 @@ import kotlin.jvm.internal.Intrinsics;
 
 public class AnimationUtil {
 
-    public static final int DURATION = 500;
+    public static final int DURATION = 300;
 
     /**
      * Auto Show/Hide Animation
@@ -64,7 +64,7 @@ public class AnimationUtil {
         int colorFrom = Color.RED;
         int colorTo = Color.GREEN;
         ObjectAnimator.ofObject(view, "backgroundColor", new ArgbEvaluator(), colorFrom, colorTo)
-                .setDuration(1000)
+                .setDuration(DURATION)
                 .start();
     }
 
