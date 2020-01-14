@@ -37,7 +37,7 @@ object MathUtil {
     /**
      * Tạo mã kiểu String, mã Hex theo thời gian thực
      * (kiểu: yyyyMMddHHmmssSSS(3 số) ngẫu nhiên) => Hex */
-    fun getCodeGenerationByTime(): String {
+    fun generationCodeByTime(): String {
         val dateFormat = SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.getDefault())
         val longId = java.lang.Long.valueOf(dateFormat.format(Date()))
         val strId = java.lang.Long.toHexString(longId)
