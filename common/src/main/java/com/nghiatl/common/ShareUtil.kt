@@ -40,7 +40,8 @@ object ShareUtil {
                 val activity = app.activityInfo
                 val name = ComponentName(activity.applicationInfo.packageName, activity.name)
                 shareIntent.addCategory(Intent.CATEGORY_LAUNCHER)
-                shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
+                shareIntent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
                 shareIntent.component = name
 
                 context.startActivity(shareIntent)
@@ -52,7 +53,13 @@ object ShareUtil {
     }
 
 
-    fun showDialogShareText(context: Context, dialogTitle: String, subject: String, text: String, uri: Uri) {
+    fun showDialogShareText(
+        context: Context,
+        dialogTitle: String,
+        subject: String,
+        text: String,
+        uri: Uri
+    ) {
         val sharingIntent = makeIntent(subject, text, uri)
         context.startActivity(Intent.createChooser(sharingIntent, dialogTitle))
     }
@@ -67,7 +74,7 @@ object ShareUtil {
     }
 
 
-    private fun shareTextAndImage(
+    fun shareTextAndImage(
         context: Context,
         title: String,
         shareLink: String,
@@ -81,7 +88,7 @@ object ShareUtil {
         context.startActivity(Intent.createChooser(shareIntent, title))
     }
 
-    private fun shareImage(
+    fun shareImage(
         context: Context,
         title: String,
         imgUri: Uri
@@ -91,6 +98,20 @@ object ShareUtil {
         shareIntent.putExtra(Intent.EXTRA_STREAM, imgUri)
         shareIntent.type = "image/*"
         context.startActivity(Intent.createChooser(shareIntent, title))
+    }
+
+    fun shareUrl(
+        context: Context?,
+        url: String
+    ) {
+        var newUrl = if (!url.startsWith("http://") && !url.startsWith("https://"))
+            "http://$url"
+        else
+            url
+
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(newUrl)
+        context?.startActivity(intent)
     }
 
     private fun makeIntent(subject: String, text: String, uri: Uri?): Intent {
