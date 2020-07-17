@@ -233,7 +233,7 @@ public class FileUtil {
         return new String(buffer, "UTF-8");
     }
 
-    public void openFileWithType(Context context, String filePath) {
+    /*public void openFileWithType(Context context, String filePath) {
         MimeTypeMap myMime = MimeTypeMap.getSingleton();
         Intent newIntent = new Intent(Intent.ACTION_VIEW);
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -249,5 +249,5 @@ public class FileUtil {
         } catch (Exception ex) {
             Toast.makeText(context, "No handler for this type of file.", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 }
