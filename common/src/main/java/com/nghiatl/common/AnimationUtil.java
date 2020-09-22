@@ -25,6 +25,9 @@ import org.jetbrains.annotations.Nullable;
 
 import kotlin.jvm.internal.Intrinsics;
 
+/**
+ * @deprecated replace by AnimationExt
+ */
 public class AnimationUtil {
 
     public static final int DURATION = 300;

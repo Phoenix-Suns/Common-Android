@@ -2,6 +2,8 @@ package com.nghiatl.common;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -86,5 +88,32 @@ public class BitmapUtil {
         // down sizing image as it throws OutOfMemory Exception
         options.inSampleSize = quality;
         return BitmapFactory.decodeFile(filePath, options);
+    }
+
+    /**
+     * Merge two bitmap
+     * Ex:
+      Bitmap qrBitmap = makeQRCodeBitmap(qrCode);
+     Bitmap icon = BitmapFactory.decodeResource(requireContext().getResources(), R.drawable.ic_leep_placeholder);
+      icon = Bitmap.createScaledBitmap(icon, qrBitmap.getHeight()/5, qrBitmap.getHeight()/5, false);
+      qrBitmap = mergeBitmaps(icon, qrBitmap);
+     * @param logo
+     * @param qrcode
+     * @return
+     */
+    public Bitmap mergeBitmaps(Bitmap logo, Bitmap qrcode) {
+
+        Bitmap combined = Bitmap.createBitmap(qrcode.getWidth(), qrcode.getHeight(), qrcode.getConfig());
+        Canvas canvas = new Canvas(combined);
+        int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
+        canvas.drawBitmap(qrcode, new Matrix(), null);
+
+        //Bitmap resizeLogo = Bitmap.createScaledBitmap(logo, canvasWidth / 5, canvasHeight / 5, true);
+        Bitmap resizeLogo = Bitmap.createBitmap(logo);
+        int centreX = (canvasWidth - resizeLogo.getWidth()) /2;
+        int centreY = (canvasHeight - resizeLogo.getHeight()) / 2;
+        canvas.drawBitmap(resizeLogo, centreX, centreY, null);
+        return combined;
     }
 }

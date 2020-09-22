@@ -1,4 +1,4 @@
-package com.nghiatl.common.view
+package com.nghiatl.common.view.itemdecoration
 
 import android.graphics.Rect
 import android.view.View
