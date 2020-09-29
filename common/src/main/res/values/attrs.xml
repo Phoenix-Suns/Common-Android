@@ -19,4 +19,9 @@
         <attr name="shadow_position" format="integer" />
         <attr name="loading_speed" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="MultipleStateView">
+        <attr name="layout_loading" format="reference" />
+        <attr name="layout_empty" format="reference" />
+    </declare-styleable>
 </resources>
