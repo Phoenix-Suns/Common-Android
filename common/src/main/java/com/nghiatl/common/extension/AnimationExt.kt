@@ -23,34 +23,36 @@ private const val DEFAULT_DURATION: Long = 300
  * @param listener
  */
 fun ViewGroup?.repairAutoAnimation(
+    duration: Long = DEFAULT_DURATION,
     listener: Transition.TransitionListener?
 ) {
     val transition = AutoTransition()
-    transition.duration = DEFAULT_DURATION
+    transition.duration = duration
     transition.ordering = TransitionSet.ORDERING_TOGETHER
     if (listener != null) transition.addListener(listener)
     TransitionManager.beginDelayedTransition(this, transition)
 }
 
-fun ViewGroup?.repairFadeAnimation() {
+fun ViewGroup?.repairFadeAnimation(duration: Long = DEFAULT_DURATION) {
     val transition = Fade()
-    transition.duration = DEFAULT_DURATION
+    transition.duration = duration
     TransitionManager.beginDelayedTransition(this, transition)
 }
 
-fun ViewGroup?.repairChangeBoundsAnimation() {
+fun ViewGroup?.repairChangeBoundsAnimation(duration: Long = DEFAULT_DURATION) {
     val transition = ChangeBounds()
-    transition.duration = DEFAULT_DURATION
+    transition.duration = duration
     TransitionManager.beginDelayedTransition(this, transition)
 }
 
-fun ViewGroup?.repairSlideAnimation(slideUp: Boolean) {
+fun ViewGroup?.repairSlideAnimation(slideUp: Boolean, duration: Long = DEFAULT_DURATION) {
     val transition = Slide(Gravity.BOTTOM)
-    transition.duration = DEFAULT_DURATION
+    transition.duration = duration
     TransitionManager.beginDelayedTransition(this, transition)
 }
 
 fun View?.runChangeColorAnimation(
+    duration: Long = DEFAULT_DURATION,
     colorFrom: Int = Color.RED,
     colorTo: Int = Color.GREEN
 ) {
@@ -61,18 +63,18 @@ fun View?.runChangeColorAnimation(
         colorFrom,
         colorTo
     )
-        .setDuration(DEFAULT_DURATION)
+        .setDuration(duration)
         .start()
 }
 
-fun View?.runScaleAnimation(): ScaleAnimation? {
+fun View?.runScaleAnimation(duration: Long = DEFAULT_DURATION): ScaleAnimation? {
     val animation = ScaleAnimation(
         1.15f, 1f, 1.15f, 1f,
         Animation.RELATIVE_TO_SELF, 0.5f,
         Animation.RELATIVE_TO_SELF, 0.5f
     )
     this?.animation = animation
-    animation.duration = 100
+    animation.duration = duration
     animation.start()
     return animation
 }
@@ -80,7 +82,7 @@ fun View?.runScaleAnimation(): ScaleAnimation? {
 /**
  * Expand View Height
  */
-fun View?.runExpandAnimation(duration: Long?): Animation {
+fun View?.runExpandAnimation(duration: Long = DEFAULT_DURATION): Animation {
     val initHeight = this?.height ?: 0
     this?.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     val targetHeight = this?.measuredHeight ?: 0
@@ -99,7 +101,7 @@ fun View?.runExpandAnimation(duration: Long?): Animation {
             return true
         }
     }
-    animation.duration = duration ?: 300L
+    animation.duration = duration
     this?.startAnimation(animation)
     return animation
 }
@@ -111,7 +113,7 @@ fun View?.runExpandAnimation(duration: Long?): Animation {
 fun View?.runCollapseAnimation(
     targetHeight: Int,
     goneAfterDone: Boolean,
-    duration: Long?
+    duration: Long = DEFAULT_DURATION
 ): Animation {
     val initialHeight = this?.measuredHeight ?: 0
     val distanceHeight = targetHeight - (this?.measuredHeight ?: 0)
@@ -133,7 +135,7 @@ fun View?.runCollapseAnimation(
             return true
         }
     }
-    animation.duration = duration ?: 300L
+    animation.duration = duration
     this?.startAnimation(animation)
     return animation
 }

@@ -20,7 +20,7 @@
         <attr name="loading_speed" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="MultipleStateView">
+    <declare-styleable name="MultipleStateViewGroup">
         <attr name="layout_loading" format="reference" />
         <attr name="layout_empty" format="reference" />
     </declare-styleable>

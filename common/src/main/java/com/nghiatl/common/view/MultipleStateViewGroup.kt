@@ -1,18 +1,13 @@
 package com.nghiatl.common.view
 
 import android.content.Context
-import android.transition.AutoTransition
-import android.transition.Transition
-import android.transition.TransitionManager
-import android.transition.TransitionSet
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.nghiatl.common.R
-
-private var LAYOUT_EMPTY = R.layout.layout_empty
+import com.nghiatl.common.extension.repairAutoAnimation
 
 /** Loading, Empty, Content layout
  * - Using:
@@ -31,11 +26,12 @@ private var LAYOUT_EMPTY = R.layout.layout_empty
         multipleStateView.showContent()
 
     - Get View on Child Layout:
-        multipleStateView.emptyView?.findViewById<View>(R.id.btnReload)
+        multipleStateView.emptyView?.findViewById<View>(R.id.view_on_empty)
  */
-class MultipleStateView : FrameLayout {
+class MultipleStateViewGroup : FrameLayout {
     var emptyView: View? = null
     var loadingView: View? = null
+    private val LAYOUT_EMPTY = R.layout.layout_empty
 
     private var emptyLayoutId: Int = LAYOUT_EMPTY
     private var loadingLayoutId: Int = LAYOUT_EMPTY
@@ -44,7 +40,7 @@ class MultipleStateView : FrameLayout {
         init(context, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0) {
         init(context, attrs)
     }
 
@@ -57,21 +53,21 @@ class MultipleStateView : FrameLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.MultipleStateView, 0, 0)
+        val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.MultipleStateViewGroup, 0, 0)
         try {
-            this.loadingLayoutId = typedArray.getResourceId(R.styleable.MultipleStateView_layout_loading, LAYOUT_EMPTY)
-            this.emptyLayoutId = typedArray.getResourceId(R.styleable.MultipleStateView_layout_empty, LAYOUT_EMPTY)
+            this.loadingLayoutId = typedArray.getResourceId(R.styleable.MultipleStateViewGroup_layout_loading, LAYOUT_EMPTY)
+            this.emptyLayoutId = typedArray.getResourceId(R.styleable.MultipleStateViewGroup_layout_empty, LAYOUT_EMPTY)
         } finally {
             typedArray.recycle()
         }
 
         val inflater = getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        // Empty layout
+        // add Empty layout
         emptyView = initLayout(inflater, emptyLayoutId)
         addView(emptyView)
 
-        // Loading layout
+        // add Loading layout
         loadingView = initLayout(inflater, loadingLayoutId)
         addView(loadingView)
     }
@@ -97,24 +93,9 @@ class MultipleStateView : FrameLayout {
     }
 
     private fun displayLayout(showLoading: Boolean, showEmpty: Boolean) {
-        repairAutoAnimation(null)
+        repairAutoAnimation(listener = null)
         loadingView?.visibility = if (showLoading) View.VISIBLE else View.GONE
         emptyView?.visibility = if (showEmpty) View.VISIBLE else View.GONE
     }
-}
-
-/**
- * Auto Show/Hide Animation
- * @param viewGroup
- * @param listener
- */
-fun ViewGroup?.repairAutoAnimation(
-    listener: Transition.TransitionListener?
-) {
-    val transition = AutoTransition()
-    transition.duration = 200
-    transition.ordering = TransitionSet.ORDERING_TOGETHER
-    if (listener != null) transition.addListener(listener)
-    TransitionManager.beginDelayedTransition(this, transition)
 }
 
