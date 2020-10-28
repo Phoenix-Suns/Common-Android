@@ -24,7 +24,7 @@ private const val DEFAULT_DURATION: Long = 300
  */
 fun ViewGroup?.repairAutoAnimation(
     duration: Long = DEFAULT_DURATION,
-    listener: Transition.TransitionListener?
+    listener: Transition.TransitionListener? = null
 ) {
     val transition = AutoTransition()
     transition.duration = duration

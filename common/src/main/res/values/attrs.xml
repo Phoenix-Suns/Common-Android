@@ -21,7 +21,10 @@
     </declare-styleable>
 
     <declare-styleable name="MultipleStateViewGroup">
-        <attr name="layout_loading" format="reference" />
-        <attr name="layout_empty" format="reference" />
+        <attr name="empty_id" format="reference|enum" />
+        <attr name="loading_center_id" format="reference|enum" />
+        <attr name="loading_bottom_id" format="reference|enum" />
+        <attr name="recycler_view_id" format="reference|enum" />
+        <attr name="SwipeRefreshLayout_id" format="reference|enum" />
     </declare-styleable>
 </resources>

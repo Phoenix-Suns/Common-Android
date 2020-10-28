@@ -46,11 +46,11 @@ class ScrollBottomListener(private val bottomContainer: View) : RecyclerView.OnS
         val totalItemCount = mLayoutManager.itemCount;
         val pastVisibleItems = mLayoutManager.findFirstVisibleItemPosition();
 
+        // when last item appear
         if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-            // ^ show when last item
             bottomContainer.visibility = View.VISIBLE
 
-            // bottom container scrolling space
+            // bottom container scrolling distance
             val bottomDistance =
                 (recyclerView.getChildAt(recyclerView.childCount - 1).bottom
                         + recyclerView.paddingBottom

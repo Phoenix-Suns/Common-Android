@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat;
  * Created by Nghia-PC on 7/16/2015.
  * Lấy GPS Thông qua Service - Không có tùy
  * Example:
- * LocationService location = new LocationService(mContext);
+ * LocationServiceOld location = new LocationServiceOld(mContext);
  *         if (!location.canGetLocation()) {
  *             // Không lấy được vị trí
  *
@@ -27,8 +27,9 @@ import androidx.core.app.ActivityCompat;
  *             // lấy được vị trí
  *             location.getLatitude()
  *         }
+ * @deprecated replace by LocationService
  */
-public class LocationService extends Service {
+public class LocationServiceOld extends Service {
 
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 99;
     Location mLocation;  // Dữ liệu trả về
@@ -67,7 +68,7 @@ public class LocationService extends Service {
     };
 
 
-    public LocationService(Context context) {
+    public LocationServiceOld(Context context) {
         this.mContext = context;
         mLocation = new Location("Some Where");
         mLocation.setLatitude(0.0);
