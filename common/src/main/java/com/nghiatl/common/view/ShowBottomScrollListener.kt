@@ -24,7 +24,7 @@ recyclerView.addOnScrollListener(ScrollBottomListener(bottomContainer))
                 android:layout_gravity="bottom" />
 </FrameLayout>
  */
-class ScrollBottomListener(private val bottomContainer: View) : RecyclerView.OnScrollListener() {
+class ShowBottomScrollListener(private val bottomView: View) : RecyclerView.OnScrollListener() {
     /*override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
 
@@ -48,17 +48,17 @@ class ScrollBottomListener(private val bottomContainer: View) : RecyclerView.OnS
 
         // when last item appear
         if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-            bottomContainer.visibility = View.VISIBLE
+            bottomView.visibility = View.VISIBLE
 
             // bottom container scrolling distance
             val bottomDistance =
                 (recyclerView.getChildAt(recyclerView.childCount - 1).bottom
                         + recyclerView.paddingBottom
                         - recyclerView.height)
-            setMargins(bottomContainer, bottom = -bottomDistance)
+            setMargins(bottomView, bottom = -bottomDistance)
 
         } else {
-            bottomContainer.visibility = View.GONE
+            bottomView.visibility = View.GONE
         }
     }
 

@@ -42,7 +42,7 @@ class MultiStateLayout : FrameLayout {
     var loadingBottomView: View? = null
     var swipeRefreshLayout: SwipeRefreshLayout? = null
     var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
-    private var scrollBottomListener: ScrollBottomListener? = null
+    private var showBottomScrollListener: ShowBottomScrollListener? = null
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -102,7 +102,7 @@ class MultiStateLayout : FrameLayout {
             loadingBottomView = findViewById(loadingBottomId)
 
             loadingBottomView?.let { loadingBottomView ->
-                this.scrollBottomListener = ScrollBottomListener(loadingBottomView)
+                this.showBottomScrollListener = ShowBottomScrollListener(loadingBottomView)
             }
         }
         if (recyclerViewId != LAYOUT_EMPTY) {
@@ -116,12 +116,12 @@ class MultiStateLayout : FrameLayout {
     fun showLoadingBottom(isShow: Boolean = true) {
         if (isShow) {
             loadingBottomView?.visibility = View.VISIBLE
-            scrollBottomListener?.let { scrollBottomListener ->
+            showBottomScrollListener?.let { scrollBottomListener ->
                 recyclerView?.addOnScrollListener(scrollBottomListener)
             }
         } else {
             loadingBottomView?.visibility = View.GONE
-            scrollBottomListener?.let { scrollBottomListener ->
+            showBottomScrollListener?.let { scrollBottomListener ->
                 recyclerView?.removeOnScrollListener(scrollBottomListener)
             }
         }

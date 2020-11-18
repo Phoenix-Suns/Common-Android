@@ -2,6 +2,8 @@ package com.nghiatl.common.extension
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.nghiatl.common.base.BaseFragment
 import java.io.Serializable
@@ -29,7 +31,21 @@ fun Fragment.findChildVisible(): Fragment? {
     return childVisible
 }
 
-inline fun <reified T: Parcelable> BaseFragment.addParcelArgs(objects: T): BaseFragment {
+fun Fragment.finishFragment() {
+    if (parentFragment is DialogFragment) {
+        try {
+            (parentFragment as DialogFragment?)?.dismissAllowingStateLoss()
+        } catch (ex: Exception) {
+            Log.e("Fragment.finishFragment","Can not close dialog ${ex.message}")
+        }
+    } else {
+        if (isAdded) {
+            activity?.onBackPressed()
+        }
+    }
+}
+
+inline fun <reified T : Parcelable> BaseFragment.addParcelArgs(objects: T): BaseFragment {
     val args = Bundle()
     args.putParcelable(T::class.java.name, objects)
     arguments = args
