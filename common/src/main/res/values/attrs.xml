@@ -27,4 +27,11 @@
         <attr name="recycler_view_id" format="reference|enum" />
         <attr name="SwipeRefreshLayout_id" format="reference|enum" />
     </declare-styleable>
+
+    <declare-styleable name="DotsIndicator">
+        <attr name="dotsColor" format="color"/>
+        <attr name="selectedDotColor" format="color"/>
+        <attr name="dotsSize" format="dimension"/>
+        <attr name="dotsSpacing" format="dimension"/>
+    </declare-styleable>
 </resources>

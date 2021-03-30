@@ -32,7 +32,7 @@ fun <T : Serializable> MutableList<T>.asArgument(key: String) = key to this
 /**
  * Retrieve property from intent
  */
-fun <T : Any> FragmentActivity.argument(key: String) = lazy { intent.extras[key] as T }
+fun <T : Any> FragmentActivity.argument(key: String) = lazy { intent.extras?.get(key) as T }
 
 /**
  * Retrieve property with default value from intent
@@ -42,10 +42,10 @@ fun <T : Any> FragmentActivity.argument(key: String, defaultValue: T? = null) = 
 }
 
 inline fun <reified T : Any> FragmentActivity.argument() =
-        lazy { intent.extras[T::class.java.name] as T }
+        lazy { intent.extras?.get(T::class.java.name) as T }
 
 inline fun <reified T : Any> FragmentActivity.nullableArguments() =
-        lazy { intent.extras[T::class.java.name] as? T }
+        lazy { intent.extras?.get(T::class.java.name) as? T }
 
 /**
  * Retrieve property from intent
@@ -58,7 +58,7 @@ fun <T : Any> Fragment.argument(key: String) = lazy { arguments?.get(key) as T }
  */
 inline fun <reified T : Any> Fragment.argument() = lazy { arguments?.get(T::class.java.name) as T }
 
-inline fun <reified T : Parcelable> Fragment.parcelArgument() = lazy { arguments!!.getParcelable(T::class.java.name) as T}
+//inline fun <reified T : Parcelable> Fragment.parcelArgument() = lazy { arguments?.getParcelable(T::class.java.name) as T}
 
 
 
