@@ -1,4 +1,4 @@
-package com.example.democommon.ui.account.login2
+package com.example.democommon.ui.account.login_mvvm
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package com.example.democommon.ui.account.login
+package com.example.democommon.ui.account.login_mvp
 
 import com.example.democommon.models.response.LoginRespond
 import com.vn.onewayradio.base.BaseView

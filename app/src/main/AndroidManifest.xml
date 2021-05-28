@@ -15,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.common_library.samples.CommonLibrarySamplesActivity">
+
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -31,8 +34,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.account.login.LoginActivity"
+            android:name=".ui.account.login_mvp.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.account.login2.Login2Activity" />
+        <activity android:name=".ui.account.login_mvvm.Login2Activity" />
     </application>
+
 </manifest>

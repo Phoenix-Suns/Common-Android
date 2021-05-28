@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.democommon.app.AppViewModelFactory
 import com.example.democommon.app.ViewModelKey
-import com.example.democommon.ui.account.login2.Login2ViewModel
+import com.example.democommon.ui.account.login_mvvm.Login2ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

@@ -1,26 +1,23 @@
-package com.nghiatl.common.activity;
+package com.nghiatl.common.activity
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import java.util.*
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+var REQUEST_ALL_PERMISSION = 1
+var listPermissions = arrayOf(
+    Manifest.permission.CAMERA,
+    Manifest.permission.READ_EXTERNAL_STORAGE,
+    Manifest.permission.WRITE_EXTERNAL_STORAGE
+)
 
-import java.util.ArrayList;
-
-public class PermissionUtil {
-    public static int REQUEST_ALL_PERMISSION = 1;
-
-    static String[] listPermissions = new String[]{
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE, //if you can write, you can read
-
-    };
+object PermissionUtil {
 
     /**
      * Hiện yêu cầu Nhiều Permission cùng 1 lúc
@@ -28,35 +25,48 @@ public class PermissionUtil {
      * @param permissions danh sách Permission như trên
      * @return Permissions not granted
      */
-    public static String[] requestAllPermission(Activity activity, String[] permissions, int requestCode){
-        // --- Request Permission ---
-        String[] permissionsToRequest = getPermissionNotGranted(activity, permissions);
-        if (permissionsToRequest.length > 0) {
-            ActivityCompat.requestPermissions(activity, permissionsToRequest, requestCode);
-        }
+    fun requestAllPermission(
+        activity: Activity,
+        permissions: Array<String>,
+        requestCode: Int
+    ): Array<String> {
 
-        return permissionsToRequest;
+        // --- Request Permission ---
+        val permissionsToRequest = getPermissionNotGranted(activity, permissions)
+        if (permissionsToRequest.isNotEmpty()) {
+            ActivityCompat.requestPermissions(activity, permissionsToRequest, requestCode)
+        }
+        return permissionsToRequest
     }
 
-    public static String[] requestAllPermission(Fragment fragment, String[] permissions, int requestCode){
+    fun requestAllPermission(
+        fragment: Fragment,
+        permissions: Array<String>,
+        requestCode: Int
+    ): Array<String> {
+
         // --- Request Permission ---
-        String[] permissionsToRequest = getPermissionNotGranted(fragment.getActivity(), permissions);
-        if (permissionsToRequest.length > 0) {
-            fragment.requestPermissions(permissionsToRequest, requestCode);
+        val permissionsToRequest = getPermissionNotGranted(fragment.requireContext(), permissions)
+        if (permissionsToRequest.isNotEmpty()) {
+            fragment.requestPermissions(permissionsToRequest, requestCode)
         }
-        return permissionsToRequest;
+        return permissionsToRequest
     }
 
-    public static String[] requestAllPermission(AppCompatActivity activity, String[] permissions, int requestCode) {
+    fun requestAllPermission(
+        activity: AppCompatActivity,
+        permissions: Array<String>,
+        requestCode: Int
+    ): Array<String> {
+
         // --- Request Permission ---
-        String[] permissionsToRequest = getPermissionNotGranted(activity, permissions);
-        if (permissionsToRequest.length > 0) {
-            ActivityCompat.requestPermissions(activity, permissionsToRequest, requestCode);
+        val permissionsToRequest = getPermissionNotGranted(activity, permissions)
+        if (permissionsToRequest.isNotEmpty()) {
+            ActivityCompat.requestPermissions(activity, permissionsToRequest, requestCode)
+
         }
-
-        return permissionsToRequest;
+        return permissionsToRequest
     }
-
 
     /**
      * Check list Permission granted
@@ -64,14 +74,27 @@ public class PermissionUtil {
      * @param permissions
      * @return
      */
-    public static String[] getPermissionNotGranted(Context context, String[] permissions ) {
-        ArrayList<String> permissionsToRequest = new ArrayList<String>();
-        for (int i=0; i<permissions.length; i++) {
-            if (ContextCompat.checkSelfPermission(context, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
-                permissionsToRequest.add(permissions[i]);
+    fun getPermissionNotGranted(context: Context, permissions: Array<String>): Array<String> {
+
+        val permissionsToRequest = ArrayList<String>()
+        for (i in permissions.indices) {
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    permissions[i]
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                permissionsToRequest.add(permissions[i])
             }
         }
-        String[] permissionsArr = permissionsToRequest.toArray(new String[permissionsToRequest.size()]);
-        return permissionsArr;
+        return permissionsToRequest.toTypedArray()
+    }
+
+    fun hasAllPermissionsGranted(grantResults: IntArray): Boolean {
+        for (grantResult in grantResults) {
+            if (grantResult == PackageManager.PERMISSION_DENIED) {
+                return false
+            }
+        }
+        return true
     }
 }

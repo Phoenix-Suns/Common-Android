@@ -1,4 +1,4 @@
-package com.example.democommon.ui.account.login2
+package com.example.democommon.ui.account.login_mvvm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
