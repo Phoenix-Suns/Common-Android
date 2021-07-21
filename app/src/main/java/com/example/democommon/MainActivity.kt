@@ -3,7 +3,7 @@ package com.example.democommon
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.nghiatl.common.demo.DemoListActivity
+import com.example.democommon.ui.common_library.samples.CommonLibrarySamplesActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startActivity(Intent(this, DemoListActivity::class.java))
+        startActivity(Intent(this, CommonLibrarySamplesActivity::class.java))
     }
 }

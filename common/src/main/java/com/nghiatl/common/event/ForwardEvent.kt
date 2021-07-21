@@ -5,7 +5,6 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.fragment.app.Fragment
-import com.nghiatl.common.base.BaseFragment
 
 abstract class ForwardEvent<T : Any, K : Any> {
     private val mOwners = hashMapOf<LifecycleOwner, MutableMap<(T?) -> Unit, Notify<*>>>()

@@ -8,4 +8,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--<string name="google_sign_request_id" translatable="false">592056259575-mp40latu5l3h7t5te3nfhpgim2k2gmku.apps.googleusercontent.com</string>-->
+
+    <string name="common_sample_activity_utils">Activity Utils</string>
+    <string name="common_sample_delay_finish_activity">Delay finish Activity</string>
+    <string name="common_sample_check_permission">Delay close Activity</string>
+    <string name="common_sample_restart_application">Restart Application</string>
 </resources>

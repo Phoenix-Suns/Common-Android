@@ -1,16 +1,16 @@
 package com.example.democommon.ui.common_library.samples
 
-import android.inputmethodservice.Keyboard
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.democommon.R
 import com.nghiatl.common.activity.ActivityUtil
+import com.nghiatl.common.application.ApplicationUtil
 import kotlinx.android.synthetic.main.activity_common_library_samples.*
 import kotlinx.android.synthetic.main.item_sample_row.view.*
 
@@ -28,9 +28,11 @@ class CommonLibrarySamplesActivity : AppCompatActivity() {
 
     private fun setupViews() {
         val data = arrayListOf(
-            TitleData("ActivityUtil", null),
-            RowData("Delay finish Activity", "test 1"),
-            RowData("Check Permission", "test 1"),
+            TitleData(R.string.common_sample_activity_utils, null),
+            RowData(R.string.common_sample_delay_finish_activity, null),
+            RowData(R.string.common_sample_check_permission, null),
+            RowData(R.string.common_sample_restart_application, null),
+            RowData(R.string.app_name, null),
         )
         adapter = RowsAdapter(null)
         recyclerView.adapter = adapter
@@ -39,34 +41,39 @@ class CommonLibrarySamplesActivity : AppCompatActivity() {
 
     private fun setEvents() {
         adapter.onItemClick = { rowData ->
-            when (rowData.title) {
-                "Delay finish Activity" -> {
+            when (rowData.titleId) {
+                R.string.common_sample_delay_finish_activity -> {
                     ActivityUtil.delayFinishActivity(2F, this, CommonLibrarySamplesActivity::class.java)
                 }
-                "Check Permission" -> addFragment(CheckPermissionsFragment())
+                R.string.common_sample_check_permission -> addFragment(CheckPermissionsFragment())
+                R.string.common_sample_restart_application -> {
+                    ApplicationUtil.restartApplication2(this)
+                }
+
             }
         }
     }
 
     private fun addFragment(fragment: CheckPermissionsFragment) {
-        supportFragmentManager.beginTransaction().add(
-            R.id.container, fragment, fragment::class.java.name
-        ).commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, fragment, fragment::class.java.simpleName)
+            .addToBackStack(fragment::class.java.simpleName)
+            .commit()
     }
 
 }
 
 private class TitleData(
-    title: String,
-    val navigationClass: String?
-) : BaseRowItem(title)
+    @StringRes titleId: Int,
+    navigationClass: String?
+) : BaseRowItem(titleId, navigationClass)
 
 private class RowData(
-    title: String,
-    val navigationClass: String?
-) : BaseRowItem(title)
+    @StringRes titleId: Int,
+    navigationClass: String?
+) : BaseRowItem(titleId, navigationClass)
 
-private abstract class BaseRowItem (val title: String)
+private abstract class BaseRowItem (@StringRes val titleId: Int, val navigationClass: String?)
 
 private class RowsAdapter(
     var onItemClick: ((BaseRowItem) -> Unit)? = null
@@ -121,7 +128,7 @@ private class RowsAdapter(
         fun bindData(item: RowData, onItemClick: ((RowData) -> Unit)?) {
             this.item = item
 
-            parent.textView.text = item.title
+            parent.textView.setText(item.titleId)
             parent.setOnClickListener {
                 onItemClick?.invoke(item)
             }
@@ -135,7 +142,7 @@ private class RowsAdapter(
         fun bindData(item: TitleData, onItemClick: ((TitleData) -> Unit)?) {
             this.item = item
 
-            parent.textView.text = item.title
+            parent.textView.setText(item.titleId)
             parent.setOnClickListener {
                 onItemClick?.invoke(item)
             }

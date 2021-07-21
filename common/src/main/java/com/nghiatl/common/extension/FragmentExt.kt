@@ -5,7 +5,6 @@ import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import com.nghiatl.common.base.BaseFragment
 import java.io.Serializable
 
 private fun Fragment.isParentVisible(): Boolean {
