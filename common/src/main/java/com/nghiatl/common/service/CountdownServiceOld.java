@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 
-public class CountdownService extends Service {
+public class CountdownServiceOld extends Service {
 
     public static final String EXTRA_MILLISECOND_UNTIL_FINISH = "com.windyroad.nghia.common.service.extra.MILLISECOND_UNTIL_FINISH";
     public static final String ACTION_COUNTDOWN = "com.windyroad.nghia.common.service.action.COUNTDOWN";
@@ -57,7 +57,7 @@ public class CountdownService extends Service {
      * @param countDownTime thời gian đếm ngược (milisecond)
      */
     public static void startActionCountdown(Context context, long countDownTime){
-        Intent intent = new Intent(context, CountdownService.class);
+        Intent intent = new Intent(context, CountdownServiceOld.class);
         intent.setAction(ACTION_COUNTDOWN);
         intent.putExtra(EXTRA_COUNTDOWN_TIME, countDownTime);
         context.startService(intent);

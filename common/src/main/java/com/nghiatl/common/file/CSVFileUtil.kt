@@ -1,5 +1,7 @@
 package com.nghiatl.common.file
 
+import java.io.InputStream
+
 object CSVFileUtil {
 
     /**

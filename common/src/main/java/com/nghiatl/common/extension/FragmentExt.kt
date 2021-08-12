@@ -1,11 +1,9 @@
 package com.nghiatl.common.extension
 
-import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import java.io.Serializable
+import androidx.lifecycle.Lifecycle
 
 private fun Fragment.isParentVisible(): Boolean {
     var parent = parentFragment
@@ -44,31 +42,29 @@ fun Fragment.finishFragment() {
     }
 }
 
-inline fun <reified T : Parcelable> BaseFragment.addParcelArgs(objects: T): BaseFragment {
-    val args = Bundle()
-    args.putParcelable(T::class.java.name, objects)
-    arguments = args
-    return this
-}
+/*
+fun <T> Fragment.setNavigationResult(key: String, value: T) {
+    findNavController()
+        .previousBackStackEntry
+        ?.savedStateHandle
+        ?.set(key, value)
+}*/
 
-fun BaseFragment.addArgs(newArgs: Bundle) : BaseFragment {
-    var args = arguments
-    if (args == null) args = Bundle()
-    args.putAll(newArgs)
-    arguments = args
-    return this
-}
+/*fun <T> Fragment.getNavigationResult(key: String, onResult: (result: T?) -> Unit) {
+    val navBackStackEntry = findNavController().currentBackStackEntry
 
-fun Fragment.addArgs(newArgs: Bundle) {
-    var args = arguments
-    if (args == null) args = Bundle()
-    args.putAll(newArgs)
-    arguments = args
-}
+    val observer = LifecycleEventObserver { _, event ->
+        if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry?.savedStateHandle?.contains(key) == true) {
+            val result = navBackStackEntry.savedStateHandle.get<T>(key)
+            onResult.invoke(result)
+            navBackStackEntry.savedStateHandle.remove<T>(key)
+        }
+    }
+    navBackStackEntry?.lifecycle?.addObserver(observer)
 
-fun Fragment.addArgs(vararg newArgs: Pair<String, Serializable>) {
-    var args = arguments
-    if (args == null) args = Bundle()
-    newArgs.forEach { args.putSerializable(it.first, it.second) }
-    arguments = args
-}
+    viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+        if (event == Lifecycle.Event.ON_DESTROY) {
+            navBackStackEntry?.lifecycle?.removeObserver(observer)
+        }
+    })
+}*/
