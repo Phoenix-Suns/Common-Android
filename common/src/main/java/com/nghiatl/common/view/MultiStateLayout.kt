@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.nghiatl.common.R
 import com.nghiatl.common.extension.repairAutoAnimation
 
@@ -30,6 +29,9 @@ import com.nghiatl.common.extension.repairAutoAnimation
     - Get View on Child Layout:
         multipleStateView.emptyView?.findViewById<View>(R.id.view_on_empty)
  */
+
+
+/*
 class MultiStateLayout : FrameLayout {
     private var loadingBottomId: Int = LAYOUT_EMPTY
     private var loadingCenterId: Int = LAYOUT_EMPTY
@@ -165,4 +167,4 @@ class MultiStateLayout : FrameLayout {
     companion object {
         private const val LAYOUT_EMPTY = -1
     }
-}
+}*/

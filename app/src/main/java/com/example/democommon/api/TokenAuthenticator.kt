@@ -45,7 +45,7 @@ class TokenAuthenticator : Authenticator {
                     val newToken = refreshTokenResponse.body()
                     AppPrefs.saveAccessToken(newToken?.data?.token?.accessToken)
                     AppPrefs.saveRefreshToken(newToken?.data?.token?.refreshToken)
-                    response.request().newBuilder()
+                    response.request.newBuilder()
                             .header("Authorization", newToken?.data?.token?.tokenType + " " + newToken?.data?.token?.accessToken)
                             .build()
                 } else {
@@ -61,7 +61,7 @@ class TokenAuthenticator : Authenticator {
 
     private fun responseCount(response: Response?): Int {
         var result = 1
-        val priorResponse = response?.priorResponse()
+        val priorResponse = response?.priorResponse
         while (priorResponse != null) {
             result++
         }

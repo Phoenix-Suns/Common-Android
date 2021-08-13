@@ -1,5 +1,6 @@
 package com.nghiatl.common.network
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -106,7 +107,7 @@ object NetworkUtil {
             val capabilities = connectivityManager.getNetworkCapabilities(network)
             capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
         } else {
-            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
+            connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI
         }
     }
 
@@ -120,7 +121,7 @@ object NetworkUtil {
             val capabilities = connectivityManager.getNetworkCapabilities(network)
             capabilities != null && capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
         } else {
-            connectivityManager.activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE
+            connectivityManager.activeNetworkInfo?.type == ConnectivityManager.TYPE_MOBILE
         }
     }
 
@@ -139,6 +140,7 @@ object NetworkUtil {
     /**
      * is wifi on
      */
+    @SuppressLint("MissingPermission")
     @JvmStatic
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     fun isWifiEnabled(context: Context): Boolean {
@@ -146,9 +148,9 @@ object NetworkUtil {
             .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val mgrTel = context
             .getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        return mgrConn.activeNetworkInfo != null && mgrConn
-            .activeNetworkInfo.state == NetworkInfo.State.CONNECTED || mgrTel
-            .networkType == TelephonyManager.NETWORK_TYPE_UMTS
+        return mgrConn.activeNetworkInfo != null
+                && mgrConn.activeNetworkInfo?.state == NetworkInfo.State.CONNECTED
+                || mgrTel.networkType == TelephonyManager.NETWORK_TYPE_UMTS
     }
 
     /** check response

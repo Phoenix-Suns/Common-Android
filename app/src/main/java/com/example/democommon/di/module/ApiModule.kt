@@ -93,7 +93,7 @@ class ApiModule {
             if(token.isNotEmpty()) {
                 requestBuilder .header("Authorization", "bearer $token")
                     .header("Content-Type", "application/json")
-                    .method(originalRequest.method(),originalRequest.body())
+                    .method(originalRequest.method,originalRequest.body)
             }
 
             val request: Request

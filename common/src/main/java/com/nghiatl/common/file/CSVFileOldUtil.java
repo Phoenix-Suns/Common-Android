@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * Created by Imark-N on 11/19/2015.
  */
-public class CSVFileUtil<T> {
+public class CSVFileOldUtil<T> {
 
     /**
      * Xuất list Item thành CSV file
-     * Code Using: new CSVFileUtil<EditComment>().exportToFile(filePath, list);
+     * Code Using: new CSVFileOldUtil<EditComment>().exportToFile(filePath, list);
      */
     public boolean exportToFile(String filePath, List<T> listObject) {
         String value = toCSVText(listObject);
@@ -22,7 +22,7 @@ public class CSVFileUtil<T> {
 
     /**
      * Thêm dòng vào file CSV
-     * Code Using: new CSVFileUtil<>().appendLine(filePath, list);
+     * Code Using: new CSVFileOldUtil<>().appendLine(filePath, list);
      */
     public boolean appendLine(String filePath, T object) {
         try {

@@ -85,9 +85,9 @@ fun Long.formatMinute(): Long {
     return this / (1000 * 60)
 }
 
-inline fun <reified T> Gson.fromJson(json: String): T {
+/*inline fun <reified T> Gson.fromJson(json: String): T {
     return fromJson(json, object : TypeToken<T>() {}.type)
-}
+}*/
 
 fun Calendar.toFirstHourOfDay(): Calendar {
     this.set(Calendar.HOUR_OF_DAY, 0)

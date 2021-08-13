@@ -32,7 +32,7 @@ object RetrofitManager {
         return Interceptor { chain ->
             val originalRequest = chain.request()
             val request: Request
-            val modifiedUrl = originalRequest.url().newBuilder()
+            val modifiedUrl = originalRequest.url.newBuilder()
                     .addQueryParameter("phoneSystem", "")
                     .addQueryParameter("phoneModel", "")
                     .build()
@@ -87,11 +87,10 @@ object RetrofitManager {
             if(token.isNotEmpty()) {
                 requestBuilder .header("Authorization", "bearer $token")
                     .header("Content-Type", "application/json")
-                    .method(originalRequest.method(),originalRequest.body())
+                    .method(originalRequest.method ,originalRequest.body)
             }
 
-            val request: Request
-            request = requestBuilder.build()
+            val request: Request = requestBuilder.build()
             chain.proceed(request)
         }
     }

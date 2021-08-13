@@ -5,8 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
 import com.nghiatl.common.R;
 
 /*

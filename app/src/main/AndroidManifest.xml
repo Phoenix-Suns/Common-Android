@@ -15,9 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.common_library.samples.CommonLibrarySamplesActivity">
+        <activity
+            android:name=".ui.user_info_mvi_presenter.GetUserMVIPresenterActivity"
+            android:exported="true">
+
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
 
         </activity>
+        <activity android:name=".ui.common_library.samples.CommonLibrarySamplesActivity"></activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -26,6 +35,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".ui.others.splash.SplashActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
