@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_get_user_mvipresenter.xml" value="0.24871794871794872" />
+        <entry key="demomvi/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="demomvi/src/main/res/layout/dialog_loading.xml" value="0.2526041666666667" />
+        <entry key="demomvi/src/main/res/layout/item_repo.xml" value="0.20463320463320464" />
+        <entry key="demomvi/src/main/res/layout/list_fragment.xml" value="0.1962962962962963" />
       </map>
     </option>
   </component>

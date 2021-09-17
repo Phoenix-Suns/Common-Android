@@ -14,7 +14,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-private val TIMEOUT = 3000 // TIMEOUT
+private const val TIMEOUT = 3000 // TIMEOUT
 
 /**
  * Loại kết nối, không kết nối, qua wifi, qua mạng
@@ -55,24 +55,17 @@ object NetworkUtil {
     @RequiresPermission(android.Manifest.permission.ACCESS_NETWORK_STATE)
     fun isInternetConnected(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val activeNetwork = connectivityManager.activeNetwork ?: return false
-                val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
-                val validated = networkCapabilities == null || !networkCapabilities.hasCapability(
-                    NetworkCapabilities.NET_CAPABILITY_VALIDATED
-                )
-                return !validated
-            } else {
-                val activeNetwork = connectivityManager.activeNetworkInfo
-                return activeNetwork != null && (
-                        activeNetwork.type == ConnectivityManager.TYPE_WIFI
-                                || activeNetwork.type == ConnectivityManager.TYPE_MOBILE
-                                || activeNetwork.type == ConnectivityManager.TYPE_ETHERNET
-                        )
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork ?: return false
+            val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+            val validated = networkCapabilities == null || !networkCapabilities.hasCapability(
+                NetworkCapabilities.NET_CAPABILITY_VALIDATED
+            )
+            return !validated
+        } else {
+            val activeNetwork = connectivityManager.activeNetworkInfo
+            return activeNetwork?.isConnected ?: false
         }
-        return false
     }
 
     /**
