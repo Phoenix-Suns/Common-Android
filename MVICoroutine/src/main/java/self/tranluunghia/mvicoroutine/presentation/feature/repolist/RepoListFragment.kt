@@ -1,4 +1,4 @@
-package self.tranluunghia.mvicoroutine.presentation.feature.list
+package self.tranluunghia.mvicoroutine.presentation.feature.repolist
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,19 +8,19 @@ import self.tranluunghia.mvicoroutine.R
 import self.tranluunghia.mvicoroutine.core.basemvi.BaseMVIFragment
 import self.tranluunghia.mvicoroutine.core.helper.extention.logE
 import self.tranluunghia.mvicoroutine.core.helper.extention.singleClick
-import self.tranluunghia.mvicoroutine.databinding.ListFragmentBinding
+import self.tranluunghia.mvicoroutine.databinding.FragmentRepoListBinding
 import self.tranluunghia.mvicoroutine.presentation.feature.adapter.RepoListAdapter
 
 @AndroidEntryPoint
-class ListFragment : BaseMVIFragment<ListViewModel, ListFragmentBinding>() {
+class RepoListFragment : BaseMVIFragment<RepoListViewModel, FragmentRepoListBinding>() {
 
     companion object {
-        fun newInstance() = ListFragment()
+        fun newInstance() = RepoListFragment()
     }
 
-    override val viewModel: ListViewModel by viewModels()
-    override fun layout(): Int = R.layout.list_fragment
-    override fun viewModelClass(): Class<ListViewModel> = ListViewModel::class.java
+    override val viewModel: RepoListViewModel by viewModels()
+    override fun layout(): Int = R.layout.fragment_repo_list
+    override fun viewModelClass(): Class<RepoListViewModel> = RepoListViewModel::class.java
 
     val repoListAdapter by lazy { RepoListAdapter(ArrayList()) }
 
@@ -34,7 +34,7 @@ class ListFragment : BaseMVIFragment<ListViewModel, ListFragmentBinding>() {
 
         binding.buttonSearch.singleClick {
             val searchKey = binding.editTextSearchKey.text.toString().trim()
-            viewModel.sendIntent(ListContract.ListIntent.GetList(searchKey))
+            viewModel.sendIntent(RepoListContract.ListIntent.GetList(searchKey))
         }
     }
 
@@ -48,12 +48,12 @@ class ListFragment : BaseMVIFragment<ListViewModel, ListFragmentBinding>() {
         }
     }
 
-    private fun handleStates(state: ListContract.ListState) {
+    private fun handleStates(state: RepoListContract.ListState) {
         when (state) {
-            is ListContract.ListState.ShowUserInfo -> {
+            is RepoListContract.ListState.ShowUserInfo -> {
                 logE(state.userInfo.name)
             }
-            is ListContract.ListState.ShowRepoList -> {
+            is RepoListContract.ListState.ShowRepoList -> {
                 repoListAdapter.updateItems(state.repoList)
             }
         }

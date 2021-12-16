@@ -1,10 +1,10 @@
-package self.tranluunghia.mvicoroutine.presentation.feature.list
+package self.tranluunghia.mvicoroutine.presentation.feature.repolist
 
 import self.tranluunghia.mvicoroutine.core.basemvi.BaseMVIContract
 import self.tranluunghia.mvicoroutine.domain.model.GithubRepo
 import self.tranluunghia.mvicoroutine.domain.model.GithubUser
 
-sealed class ListContract {
+sealed class RepoListContract {
     sealed class ListIntent: BaseMVIContract.BaseIntent {
         class GetList(val searchKey: String) : ListIntent()
     }

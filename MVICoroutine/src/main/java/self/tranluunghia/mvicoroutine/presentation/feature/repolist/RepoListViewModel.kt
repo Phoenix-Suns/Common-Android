@@ -1,4 +1,4 @@
-package self.tranluunghia.mvicoroutine.presentation.feature.list
+package self.tranluunghia.mvicoroutine.presentation.feature.repolist
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -10,17 +10,17 @@ import self.tranluunghia.mvicoroutine.domain.usecase.GetUserDetailUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
+class RepoListViewModel @Inject constructor(
     private val getUserDetailUseCase: GetUserDetailUseCase,
     private val getRepoListUseCase: GetRepoListUseCase
-) : BaseMVIViewModel<ListContract.ListIntent, ListContract.ListState>() {
+) : BaseMVIViewModel<RepoListContract.ListIntent, RepoListContract.ListState>() {
 
     private var searchKey: String = ""
     private var repoListPaging: Paging = Paging()
 
-    override fun handleIntents(viewIntent: ListContract.ListIntent) {
+    override fun handleIntents(viewIntent: RepoListContract.ListIntent) {
         when (viewIntent) {
-            is ListContract.ListIntent.GetList -> {
+            is RepoListContract.ListIntent.GetList -> {
                 getListRepo(viewIntent.searchKey)
             }
         }
@@ -36,7 +36,7 @@ class ListViewModel @Inject constructor(
                 .collect { dataState ->
                     when (dataState.status) {
                         DataState.Status.SUCCESS -> {
-                            callbackState(ListContract.ListState.ShowRepoList(dataState.data!!))
+                            callbackState(RepoListContract.ListState.ShowRepoList(dataState.data!!))
                         }
                         DataState.Status.ERROR -> {
 
@@ -55,7 +55,7 @@ class ListViewModel @Inject constructor(
                 .collect { dataState ->
                     when (dataState.status) {
                         DataState.Status.SUCCESS -> {
-                            callbackState(ListContract.ListState.ShowUserInfo(dataState.data!!))
+                            callbackState(RepoListContract.ListState.ShowUserInfo(dataState.data!!))
                         }
                         DataState.Status.ERROR -> {
 
