@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 import kotlin.reflect.KClass
 
@@ -147,8 +146,4 @@ fun <T : Any> Intent.get(key: String): T? {
 
 inline fun <reified T : Any> Intent.get(): T? {
     return extras?.get(T::class.java.name) as? T
-}
-
-inline fun <reified T : Parcelize> Bundle.get(): T? {
-    return get(T::class.java.name) as? T
 }

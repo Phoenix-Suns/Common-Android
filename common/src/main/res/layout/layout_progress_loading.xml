@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.basemvvm.design.widget.RotateLoadingView
+    <com.nghiatl.common.view.RotateLoadingView
         android:id="@+id/loadingView"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:loading_color="#FFFFFF"
+        app:loading_color="#FF0000"
         app:loading_width="5dp"
         app:shadow_position="2" />
 

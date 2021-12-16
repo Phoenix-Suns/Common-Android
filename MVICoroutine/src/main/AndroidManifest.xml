@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="self.tranluunghia.demomvi">
+    package="self.tranluunghia.mvicoroutine">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoCommon"
-        android:name=".presentation.app.MyApplication">
+        android:name="self.tranluunghia.mvicoroutine.presentation.app.MyApplication">
         <activity
-            android:name=".presentation.feature.MainActivity"
+            android:name="self.tranluunghia.mvicoroutine.presentation.feature.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
