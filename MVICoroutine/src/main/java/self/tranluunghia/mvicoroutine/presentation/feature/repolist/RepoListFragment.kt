@@ -1,9 +1,10 @@
 package self.tranluunghia.mvicoroutine.presentation.feature.repolist
 
-import androidx.fragment.app.viewModels
+import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.cancelChildren
 import self.tranluunghia.mvicoroutine.R
 import self.tranluunghia.mvicoroutine.core.basemvi.BaseMVIFragment
 import self.tranluunghia.mvicoroutine.core.helper.extention.logE
@@ -18,11 +19,15 @@ class RepoListFragment : BaseMVIFragment<RepoListViewModel, FragmentRepoListBind
         fun newInstance() = RepoListFragment()
     }
 
-    override val viewModel: RepoListViewModel by viewModels()
     override fun layout(): Int = R.layout.fragment_repo_list
     override fun viewModelClass(): Class<RepoListViewModel> = RepoListViewModel::class.java
 
     val repoListAdapter by lazy { RepoListAdapter(ArrayList()) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun setUpViews() {
         super.setUpViews()
@@ -35,6 +40,11 @@ class RepoListFragment : BaseMVIFragment<RepoListViewModel, FragmentRepoListBind
         binding.buttonSearch.singleClick {
             val searchKey = binding.editTextSearchKey.text.toString().trim()
             viewModel.sendIntent(RepoListContract.ListIntent.GetList(searchKey))
+        }
+
+        binding.buttonDestroyView.singleClick {
+            //viewModel.viewModelJob.cancel()
+            viewModel.viewModelJob.cancelChildren()
         }
     }
 

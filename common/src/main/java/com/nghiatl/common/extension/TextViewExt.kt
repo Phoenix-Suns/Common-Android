@@ -1,7 +1,11 @@
 package com.nghiatl.common.extension
 
+import android.graphics.Color
 import android.text.Editable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.widget.TextView
 
 /**
@@ -28,4 +32,27 @@ fun TextView.validate(errorMessage: String, validator: (String) -> Boolean) : Bo
 fun TextView.validateNormal(errorMessage: String, validator: (String) -> Boolean) : Boolean {
     this.error = if (validator(this.text.toString())) null else errorMessage
     return this.error == null
+}
+
+/**
+editText.setText("This is @mi a test @ngh strike")
+var builder4 = editText.text.setSpans(arrayListOf(
+    ForegroundColorSpan(Color.GREEN),
+    BackgroundColorSpan(Color.BLUE)
+), "@mi", "@minh")
+editText.setText(builder4)
+ */
+fun CharSequence.setSpans(spans: List<Any>, removeText: String, replaceWithText: String): SpannableStringBuilder {
+    var builder = SpannableStringBuilder(this)
+    val start = builder.indexOf(removeText)
+    val end = start + removeText.length
+
+    val spannableString = SpannableString(replaceWithText)
+
+    for (span in spans) {
+        spannableString.setSpan(span, 0, replaceWithText.length, 0)
+    }
+
+    builder.replace(start, end, spannableString)
+    return builder
 }

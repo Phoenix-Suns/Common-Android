@@ -28,6 +28,7 @@ class RepoListAdapter(private val repoList: ArrayList<GithubRepo>) :
     override fun getItemCount(): Int = repoList.size
 
     fun updateItems(items: List<GithubRepo>) {
+        repoList.clear()
         repoList.addAll(items)
         notifyDataSetChanged()
     }

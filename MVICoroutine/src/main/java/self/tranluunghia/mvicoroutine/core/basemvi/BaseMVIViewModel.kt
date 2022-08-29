@@ -15,7 +15,7 @@ import self.tranluunghia.mvicoroutine.core.helper.SingleLiveEvent
 abstract class BaseMVIViewModel<INTENT: BaseMVIContract.BaseIntent, STATE: BaseMVIContract.BaseState> : ViewModel() {
     private val tag by lazy { this::class.java.name }
 
-    private var viewModelJob = Job()
+    var viewModelJob = Job()
     private val ioContext = viewModelJob + Dispatchers.IO
     private val uiContext = viewModelJob + Dispatchers.Main
     val ioScope = CoroutineScope(ioContext)
@@ -74,7 +74,9 @@ abstract class BaseMVIViewModel<INTENT: BaseMVIContract.BaseIntent, STATE: BaseM
     }
 
     override fun onCleared() {
-        viewModelJob.cancel()
+        // todo viewModel cleared nhưng không khởi tạo lại, thử Swipe Pager fragment
+        //viewModelJob.cancel()
+        viewModelJob.cancelChildren()
         super.onCleared()
     }
 }

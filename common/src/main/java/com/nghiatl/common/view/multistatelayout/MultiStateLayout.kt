@@ -1,4 +1,4 @@
-package com.nghiatl.common.view
+package com.nghiatl.common.view.multistatelayout
 
 import android.content.Context
 import android.util.AttributeSet

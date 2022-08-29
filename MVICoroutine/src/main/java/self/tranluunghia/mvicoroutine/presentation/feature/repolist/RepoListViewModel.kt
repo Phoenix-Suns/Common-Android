@@ -1,5 +1,6 @@
 package self.tranluunghia.mvicoroutine.presentation.feature.repolist
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import self.tranluunghia.mvicoroutine.core.basemvi.BaseMVIViewModel
@@ -30,22 +31,24 @@ class RepoListViewModel @Inject constructor(
         this.searchKey = searchKey
 
         ioScope.launch {
-            getRepoListUseCase.invoke(GetRepoListUseCase.Params(
+            val flow = getRepoListUseCase.invoke(GetRepoListUseCase.Params(
                 perPage = repoListPaging.perPage, page = repoListPaging.page, keyWork = searchKey
             ))
-                .collect { dataState ->
-                    when (dataState.status) {
-                        DataState.Status.SUCCESS -> {
-                            callbackState(RepoListContract.ListState.ShowRepoList(dataState.data!!))
-                        }
-                        DataState.Status.ERROR -> {
+            //delay(3000)
+            flow.collect { dataState ->
 
-                        }
-                        DataState.Status.LOADING -> {
+                when (dataState.status) {
+                    DataState.Status.SUCCESS -> {
+                        callbackState(RepoListContract.ListState.ShowRepoList(dataState.data!!))
+                    }
+                    DataState.Status.ERROR -> {
 
-                        }
+                    }
+                    DataState.Status.LOADING -> {
+
                     }
                 }
+            }
         }
     }
 

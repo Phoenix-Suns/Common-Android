@@ -5,7 +5,13 @@
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.23854166666666668" />
         <entry key="MVICoroutine/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
+        <entry key="MVICoroutine/src/main/res/layout/fragment_number.xml" value="0.12314814814814815" />
+        <entry key="MVICoroutine/src/main/res/layout/fragment_repo_list.xml" value="0.165" />
+        <entry key="MVICoroutine/src/main/res/layout/fragment_swipe_numbers.xml" value="0.1" />
+        <entry key="MVICoroutine/src/main/res/layout/fragment_swipe_repos.xml" value="0.23746643066406248" />
         <entry key="MVICoroutine/src/main/res/layout/list_fragment.xml" value="0.37604166666666666" />
+        <entry key="MVICoroutine/src/main/res/layout/tab_header.xml" value="0.2125" />
+        <entry key="MVI_Rx/src/main/res/layout/activity_main.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/activity_get_user_mvipresenter.xml" value="0.24871794871794872" />
         <entry key="common/src/main/res/layout/layout_progress_loading.xml" value="0.21197916666666666" />
         <entry key="demomvi/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -16,7 +22,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

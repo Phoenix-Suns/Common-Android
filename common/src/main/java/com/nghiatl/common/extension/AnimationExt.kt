@@ -82,19 +82,29 @@ fun View?.runScaleAnimation(duration: Long = DEFAULT_DURATION): ScaleAnimation? 
 /**
  * Expand View Height
  */
-fun View?.runExpandAnimation(duration: Long = DEFAULT_DURATION): Animation {
-    val initHeight = this?.height ?: 0
-    this?.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-    val targetHeight = this?.measuredHeight ?: 0
+fun View.runExpandAnimation(duration: Long = DEFAULT_DURATION): Animation {
+    // Avoid Flash
+    this@runExpandAnimation.alpha = 0f
+    this@runExpandAnimation.visibility = View.GONE
+
+    val initHeight = this.height
+    this.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    val targetHeight = this.measuredHeight
     val distanceHeight = targetHeight - initHeight
     val animation: Animation = object : Animation() {
         override fun applyTransformation(
             interpolatedTime: Float,
             t: Transformation
         ) {
-            this@runExpandAnimation?.layoutParams?.height =
-                if (interpolatedTime == 1.0f) ViewGroup.LayoutParams.WRAP_CONTENT else initHeight + (distanceHeight.toFloat() * interpolatedTime).toInt()
-            this@runExpandAnimation?.requestLayout()
+            if (interpolatedTime == 1.0f) {
+                this@runExpandAnimation.alpha = 1f
+                this@runExpandAnimation.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            } else {
+                this@runExpandAnimation.alpha = interpolatedTime
+                this@runExpandAnimation.layoutParams.height = initHeight + (distanceHeight.toFloat() * interpolatedTime).toInt()
+            }
+            this@runExpandAnimation.requestLayout()
+            this@runExpandAnimation.visibility = View.VISIBLE // Avoid Flash
         }
 
         override fun willChangeBounds(): Boolean {
@@ -102,7 +112,7 @@ fun View?.runExpandAnimation(duration: Long = DEFAULT_DURATION): Animation {
         }
     }
     animation.duration = duration
-    this?.startAnimation(animation)
+    this.startAnimation(animation)
     return animation
 }
 

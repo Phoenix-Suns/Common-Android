@@ -36,7 +36,7 @@ fun AppCompatActivity.setFinishWhenNoExistFragment() {
             ) {
                 super.onFragmentViewDestroyed(fm, f)
 
-                if (fm?.fragments.size == 0) {
+                if (fm.fragments.size == 0) {
                     finish()
                 }
             }

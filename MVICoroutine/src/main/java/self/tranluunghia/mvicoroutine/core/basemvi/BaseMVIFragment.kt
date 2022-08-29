@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import self.tranluunghia.mvicoroutine.R
 import self.tranluunghia.mvicoroutine.core.helper.DialogUtils
@@ -15,11 +16,16 @@ import self.tranluunghia.mvicoroutine.core.helper.extention.observe
 abstract class BaseMVIFragment<VIEW_MODEL : BaseMVIViewModel<*, *>, DATA_BINDING : ViewBinding> :
     Fragment() {
     protected lateinit var binding: DATA_BINDING
-    protected abstract val viewModel: VIEW_MODEL
+    lateinit var viewModel: VIEW_MODEL
     abstract fun layout(): Int
     abstract fun viewModelClass(): Class<VIEW_MODEL>
 
     private val loadingDialog by lazy { DialogUtils.createLoadingDlg(requireContext()) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[viewModelClass()]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

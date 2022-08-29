@@ -1,4 +1,4 @@
-package com.nghiatl.common.view
+package com.nghiatl.common.view.multistatelayout
 
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ recyclerView.addOnScrollListener(ScrollBottomListener(bottomContainer))
                 android:layout_gravity="bottom" />
 </FrameLayout>
  */
-class ShowBottomScrollListener(private val bottomView: View) : RecyclerView.OnScrollListener() {
+class ShowBottomViewScrollListener(private val bottomView: View) : RecyclerView.OnScrollListener() {
     /*override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)
 
