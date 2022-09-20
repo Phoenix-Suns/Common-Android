@@ -13,6 +13,7 @@
         <entry key="MVICoroutine/src/main/res/layout/tab_header.xml" value="0.2125" />
         <entry key="MVI_Rx/src/main/res/layout/activity_main.xml" value="0.3494791666666667" />
         <entry key="app/src/main/res/layout/activity_get_user_mvipresenter.xml" value="0.24871794871794872" />
+        <entry key="common/src/main/res/layout/activity_crash_report.xml" value="0.25" />
         <entry key="common/src/main/res/layout/layout_progress_loading.xml" value="0.21197916666666666" />
         <entry key="demomvi/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="demomvi/src/main/res/layout/dialog_loading.xml" value="0.2526041666666667" />
