@@ -1,4 +1,2 @@
 include ':app', ':common'
 rootProject.name='DemoCommon'
-include ':MVICoroutine'
-include ':MVI_Rx'
