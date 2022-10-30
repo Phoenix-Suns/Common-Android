@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.democommon">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -47,6 +46,7 @@
             android:name=".ui.account.login_mvp.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.account.login_mvvm.Login2Activity" />
+        <activity android:name="com.nghiatl.common.cashreport.CrashReportActivity" />
     </application>
 
 </manifest>

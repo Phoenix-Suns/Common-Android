@@ -10,6 +10,7 @@ import com.example.democommon.di.component.DaggerAppComponent
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.nghiatl.common.Prefs
+import com.nghiatl.common.cashreport.CrashHandler
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.HasFragmentInjector
@@ -33,6 +34,9 @@ class MyApplication: Application(), HasActivityInjector {
         initializePrefs()
         initializeDI()
         initializeFacebook()
+
+        // Catch Crash
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler(applicationContext))
     }
 
     private fun initializeFacebook() {

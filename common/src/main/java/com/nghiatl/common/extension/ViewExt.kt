@@ -1,11 +1,15 @@
 package com.nghiatl.common.extension
 
+import android.graphics.PointF
 import android.os.Build
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import androidx.annotation.RequiresApi
 import androidx.core.view.doOnLayout
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 fun View?.setMargins(left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {
     if (this?.layoutParams is ViewGroup.MarginLayoutParams) {
@@ -99,4 +103,21 @@ fun View.addKeyboardVisibleListener(keyboardCallback: (keyboardVisible: Boolean)
             }
         }
     }
+}
+
+/** mContentView.contains(mTouchDown) **/
+fun View.contains(point: PointF): Boolean {
+    return left <= point.x && point.x <= right && top <= point.y && point.y <= bottom
+}
+
+/**
+ * val event = MotionEvent()
+ * mTouchDown.set(event.x, event.y)
+ * mTouchDown.isClick(event)
+ * **/
+fun PointF.isClick(event: MotionEvent): Boolean {
+    return sqrt(
+        (x - event.x).toDouble().pow(2.0)
+                + (y - event.y).toDouble().pow(2.0)
+    ) <= 10
 }

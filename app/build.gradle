@@ -7,7 +7,6 @@ plugins {
 
 android {
     compileSdkVersion rootProject.ext.compile_sdk_version
-    buildToolsVersion rootProject.ext.build_tools_version
     defaultConfig {
         applicationId "com.example.democommon"
         minSdkVersion rootProject.ext.min_sdk_version
@@ -42,6 +41,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    namespace 'com.example.democommon'
 }
 
 dependencies {
