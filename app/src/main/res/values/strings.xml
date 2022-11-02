@@ -14,5 +14,14 @@
     <string name="check_permission">Check permission</string>
     <string name="restart_application">Restart Application</string>
     <string name="progressbar_dialog">Progress bar dialog</string>
-    <string name="crash_handle">Crash handle activity</string>
+    <string name="simple_progressbar_dialog">Simple Progress bar dialog</string>
+    <string name="message_progressbar_dialog">Message Progress bar dialog</string>
+    <string name="crash_handle">Crash handle</string>
+    <string name="dialog_utils">Dialog Utils</string>
+    <string name="date_picker_dialog">Date Picker Dialog</string>
+    <string name="open_location_setting">Open Location Setting</string>
+    <string name="open_mobile_network_setting">Open Network setting</string>
+    <string name="edittext_dialog">Edit Text Dialog</string>
+    <string name="dialog_by_add_view">Dialog by Add View</string>
+    <string name="pick_image_dialog">Pick image</string>
 </resources>

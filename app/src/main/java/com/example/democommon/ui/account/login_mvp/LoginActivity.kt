@@ -16,7 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.nghiatl.common.dialog.LoadingDialog
+import com.nghiatl.common.dialog.DialogUtil
+import com.nghiatl.common.dialog.LoadingDialogView
 import com.nghiatl.common.extension.isEmailValid
 import com.vn.onewayradio.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -58,11 +59,11 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
     }
 
     override fun showLoading() {
-        LoadingDialog.show(this)
+        DialogUtil.showLoadingDialog(this, true)
     }
 
     override fun dismissLoading() {
-        LoadingDialog.dismiss()
+
     }
 
     override fun showError(errorMsg: String, errorCode: Int) {

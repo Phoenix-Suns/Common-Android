@@ -13,7 +13,8 @@ import com.example.democommon.app.AppViewModelFactory
 import com.example.democommon.extension.text
 import com.example.democommon.extension.validate
 import com.example.democommon.models.response.LoginRespond
-import com.nghiatl.common.dialog.LoadingDialog
+import com.nghiatl.common.dialog.DialogUtil
+import com.nghiatl.common.dialog.LoadingDialogView
 import com.nghiatl.common.extension.isEmailValid
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_login2.*
@@ -25,6 +26,9 @@ class Login2Activity : AppCompatActivity() {
     @Inject
     internal lateinit var viewModelFactory: AppViewModelFactory
     private lateinit var viewModel: Login2ViewModel
+    private val loadingDialog by lazy {
+        LoadingDialogView(findViewById(R.id.container))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -67,11 +71,11 @@ class Login2Activity : AppCompatActivity() {
     }
 
     fun showLoading() {
-        LoadingDialog.show(this)
+        DialogUtil.showLoadingDialog(this, true)
     }
 
     fun dismissLoading() {
-        LoadingDialog.dismiss()
+
     }
 
     fun showError(errorMsg: String) {

@@ -1,24 +1,26 @@
 package com.example.democommon.ui.common_library.samples
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.democommon.R
-import com.google.gson.Gson
 
-class RowsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+private const val TYPE_TITLE = 1
+private const val TYPE_ROW = 2
+
+class RowsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val data: ArrayList<BaseRowItem> = ArrayList()
-    val type_title = 1
-    val type_row = 2
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        if (viewType == type_row) {
+        if (viewType == TYPE_ROW) {
             val itemView = inflater.inflate(R.layout.item_sample_row, parent, false)
             return RowViewHolder(itemView)
         } else {
@@ -49,8 +51,8 @@ class RowsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         val item = data[position]
-        if (item is RowData) return type_row
-        else if (item is TitleData) return type_title
+        if (item is RowData) return TYPE_ROW
+        else if (item is TitleData) return TYPE_TITLE
         return super.getItemViewType(position)
     }
 
@@ -61,7 +63,16 @@ class RowsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bindData(item: RowData) {
             this.item = item
 
-            parent.findViewById<TextView>(R.id.textView).setText(item.titleId)
+
+            item.iconRes?.let {
+                parent.findViewById<ImageView>(R.id.imageViewIcon).setImageResource(it)
+            }
+
+            val titleTextView = parent.findViewById<TextView>(R.id.textView)
+            titleTextView.text = item.title
+
+
+            // Events
             parent.setOnClickListener {
                 item.action?.invoke(absoluteAdapterPosition, item)
             }
@@ -75,7 +86,16 @@ class RowsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bindData(item: TitleData) {
             this.item = item
 
-            parent.findViewById<TextView>(R.id.textView).setText(item.titleId)
+
+            item.iconRes?.let {
+                parent.findViewById<ImageView>(R.id.imageViewIcon).setImageResource(it)
+            }
+
+            val titleTextView = parent.findViewById<TextView>(R.id.textView)
+            titleTextView.text = item.title
+
+
+            // Events
             parent.setOnClickListener {
                 item.action?.invoke(absoluteAdapterPosition, item)
             }
@@ -84,16 +104,19 @@ class RowsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     class TitleData(
-        @StringRes titleId: Int,
+        @DrawableRes iconRes: Int? = null,
+        title: String?,
         val action: ((position: Int, item: TitleData) -> Unit)? = null
-    ) : BaseRowItem(titleId)
+    ) : BaseRowItem(iconRes, title)
 
     class RowData(
-        @StringRes titleId: Int,
+        @DrawableRes iconRes: Int? = null,
+        title: String?,
         val action: ((position: Int, item: RowData) -> Unit)? = null
-    ) : BaseRowItem(titleId)
+    ) : BaseRowItem(iconRes, title)
 
     abstract class BaseRowItem(
-        @StringRes val titleId: Int
+        @DrawableRes val iconRes: Int?,
+        val title: String?,
     )
 }
