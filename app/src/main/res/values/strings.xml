@@ -24,4 +24,6 @@
     <string name="edittext_dialog">Edit Text Dialog</string>
     <string name="dialog_by_add_view">Dialog by Add View</string>
     <string name="pick_image_dialog">Pick image</string>
+    <string name="persent_dialog">Percent dialog</string>
+    <string name="time_picker_dialog">Time picker dialog</string>
 </resources>

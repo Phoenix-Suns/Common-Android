@@ -22,7 +22,7 @@ import com.nghiatl.common.R;
 public class WaitingDialogFragment extends DialogFragment {
 
     // --- Variables ---
-    ProgressDialogFragment.IListener mListener;
+    PercentDialogFragment.IListener mListener;
 
     //--- Constructors ---
     // khởi tạo Fragment với Title
@@ -93,7 +93,7 @@ public class WaitingDialogFragment extends DialogFragment {
 
 
     // khởi tạo listener - do không cho tạo Constructor
-    public void setListener(ProgressDialogFragment.IListener listener){
+    public void setListener(PercentDialogFragment.IListener listener){
         mListener = listener;
     }
 

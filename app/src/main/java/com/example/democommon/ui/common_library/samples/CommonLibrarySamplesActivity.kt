@@ -1,7 +1,10 @@
 package com.example.democommon.ui.common_library.samples
 
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -95,6 +98,15 @@ class CommonLibrarySamplesActivity : AppCompatActivity() {
                 }
                 dlg.show(supportFragmentManager, "nghia")
             },
+            RowsAdapter.RowData(title = getString(R.string.time_picker_dialog)) { _, _ ->
+                val dlg = TimePickerFragment.newInstance(Calendar.getInstance())
+                dlg.setStyle(DatePickerDialog.THEME_TRADITIONAL)
+                dlg.setListener { view, hour, minute ->
+                    showLongToast("$hour - $minute")
+                }
+
+                dlg.show(supportFragmentManager, "nghia")
+            },
             // todo datepicker dialog inline
             // todo timepicker dialog inline
 
@@ -105,8 +117,19 @@ class CommonLibrarySamplesActivity : AppCompatActivity() {
                 }
                 dlg.show(supportFragmentManager, dlg::class.simpleName)
             },
-            RowsAdapter.RowData(title = getString(R.string.pick_image_dialog)) { _, _ ->
-                PickImageDialog("Chose your best image").
+            RowsAdapter.RowData(title = getString(R.string.persent_dialog)) { _, _ ->
+                val dlg = PercentDialogFragment.newInstance(
+                    title = "Working start",
+                    allowCancel = true
+                )
+                dlg.listener = object : PercentDialogFragment.IListener {
+                    override fun onCancelClick(dialog: DialogInterface?, which: Int) {
+                        dialog?.dismiss()
+                    }
+                }
+                dlg.show(supportFragmentManager, dlg::class.simpleName)
+
+                dlg.setProgress(50)
             },
         )
         adapter.setData(data)
