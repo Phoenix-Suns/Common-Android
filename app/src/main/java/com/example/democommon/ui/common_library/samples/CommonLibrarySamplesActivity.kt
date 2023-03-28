@@ -7,22 +7,24 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.democommon.R
+import com.example.democommon.databinding.ActivityCommonLibrarySamplesBinding
 import com.nghiatl.common.application.ApplicationUtil
 import com.nghiatl.common.dialog.*
 import com.nghiatl.common.extension.delayFinishActivity
 import com.nghiatl.common.extension.showLongToast
-import kotlinx.android.synthetic.main.activity_common_library_samples.*
 import java.util.*
 
 
 class CommonLibrarySamplesActivity : AppCompatActivity() {
     private lateinit var adapter: RowsAdapter
+    protected lateinit var binding: ActivityCommonLibrarySamplesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_common_library_samples)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_common_library_samples)
 
         setupViews()
         setEvents()
@@ -30,7 +32,7 @@ class CommonLibrarySamplesActivity : AppCompatActivity() {
 
     private fun setupViews() {
         adapter = RowsAdapter()
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
 
         val data = arrayListOf(

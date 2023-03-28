@@ -28,6 +28,7 @@ import kotlin.jvm.internal.Intrinsics;
 /**
  * @deprecated replace by AnimationExt
  */
+@Deprecated
 public class AnimationUtil {
 
     public static final int DURATION = 300;

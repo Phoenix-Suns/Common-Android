@@ -1,12 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion rootProject.ext.compile_sdk_version
+    compileSdk 33
     defaultConfig {
         applicationId "com.example.democommon"
         minSdkVersion rootProject.ext.min_sdk_version
@@ -31,15 +30,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     dataBinding {
         enabled = true
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     namespace 'com.example.democommon'
 }

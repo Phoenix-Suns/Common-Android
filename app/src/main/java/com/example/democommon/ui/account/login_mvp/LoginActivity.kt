@@ -3,7 +3,9 @@ package com.example.democommon.ui.account.login_mvp
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.example.democommon.R
+import com.example.democommon.databinding.ActivityLoginBinding
 import com.example.democommon.extension.text
 import com.example.democommon.extension.validate
 import com.example.democommon.models.response.LoginRespond
@@ -20,13 +22,12 @@ import com.nghiatl.common.dialog.DialogUtil
 import com.nghiatl.common.dialog.LoadingDialogView
 import com.nghiatl.common.extension.isEmailValid
 import com.vn.onewayradio.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_login.*
 import timber.log.Timber
 
 
 private const val REQUEST_GOOGLE_SIGN_IN = 9001
 
-class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
+class LoginActivity : BaseActivity<LoginPresenter, ActivityLoginBinding>(), LoginView {
 
     private var fbCallbackManager: CallbackManager? = null
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -94,7 +95,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
             return
         }
 
-        presenter?.login(editText_username.text, editText_password.text)
+        presenter?.login(binding.editTextUsername.text, binding.editTextPassword.text)
     }
 
     fun loginFacebookClick(view: View) {
@@ -126,11 +127,11 @@ class LoginActivity : BaseActivity<LoginPresenter>(), LoginView {
     }
 
     private fun validateInput(): Boolean {
-        if (!editText_username.validate(getString(R.string.error_not_format_email)) { it.isEmailValid() }) {
+        if (!binding.editTextUsername.validate(getString(R.string.error_not_format_email)) { it.isEmailValid() }) {
             return false
         }
 
-        if (!editText_password.validate(getString(R.string.error_not_empty)) { it.isNotEmpty() }) {
+        if (!binding.editTextPassword.validate(getString(R.string.error_not_empty)) { it.isNotEmpty() }) {
             return false
         }
 

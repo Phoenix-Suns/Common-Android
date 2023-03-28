@@ -10,10 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.democommon.R
+import com.example.democommon.databinding.FragmentCheckPermissionsBinding
 import com.nghiatl.common.activity.PermissionUtil
-import kotlinx.android.synthetic.main.fragment_check_permissions.*
 
 var listPermissions = arrayOf(
     Manifest.permission.INTERNET,
@@ -21,6 +22,8 @@ var listPermissions = arrayOf(
 )
 
 class CheckPermissionsFragment : Fragment() {
+
+    protected lateinit var binding: FragmentCheckPermissionsBinding
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -33,12 +36,12 @@ class CheckPermissionsFragment : Fragment() {
             if (isGranted) {
 
                 // Permission is granted
-                textViewStatus.text = textViewStatus.text.toString() + "\n Allowed $permissionName"
+                binding.textViewStatus.text = binding.textViewStatus.text.toString() + "\n Allowed $permissionName"
                 doNext()
             } else {
 
                 // Permission is denied
-                textViewStatus.text = textViewStatus.text.toString() + "\n NOT Allowed $permissionName"
+                binding.textViewStatus.text = binding.textViewStatus.text.toString() + "\n NOT Allowed $permissionName"
 
                 // Explain to the user that the feature is unavailable because
                 // the features requires a permission that the user has denied.
@@ -60,19 +63,20 @@ class CheckPermissionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_check_permissions, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_check_permissions, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Check
-        buttonCheckPermission.setOnClickListener {
+        binding.buttonCheckPermission.setOnClickListener {
             val permissionNotGranted = PermissionUtil.getPermissionNotGranted(
                 requireContext(),
                 listPermissions
             )
-            textViewStatus.text =
+            binding.textViewStatus.text =
                 if (permissionNotGranted.isNotEmpty())
                     "NOT Allow"
                 else
@@ -80,8 +84,8 @@ class CheckPermissionsFragment : Fragment() {
         }
 
         // Request
-        buttonRequestPermission.setOnClickListener {
-            textViewStatus.text = ""
+        binding.buttonRequestPermission.setOnClickListener {
+            binding.textViewStatus.text = ""
 
             val permissionNotGranted = PermissionUtil.getPermissionNotGranted(
                 requireContext(),

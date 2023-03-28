@@ -29,6 +29,7 @@ import androidx.core.app.ActivityCompat;
  *         }
  * @deprecated replace by LocationService
  */
+@Deprecated
 public class LocationServiceOld extends Service {
 
     private static final int MY_PERMISSION_ACCESS_COURSE_LOCATION = 99;

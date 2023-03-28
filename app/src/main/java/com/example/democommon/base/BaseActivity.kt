@@ -4,14 +4,19 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import com.example.democommon.databinding.ActivityLoginBinding
 
 
-abstract class BaseActivity<T : BasePresenter> : AppCompatActivity() {
+abstract class BaseActivity<T : BasePresenter, VB: ViewDataBinding> : AppCompatActivity() {
 
     var presenter : T? = null
+    protected lateinit var binding: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, layoutId())
         setContentView(layoutId())
         initPresenter()
         initView()
